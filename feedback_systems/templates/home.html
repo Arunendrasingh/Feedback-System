@@ -1,0 +1,312 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>RRSMIT Student Feedback System </title>
+    <style>
+        body {
+            background-image: url({% static 'img/background1234.png' %});
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+        <div class="container-fluid">
+            <p class="navbar-brand">
+                <img src="{% static 'img/Picture1.png' %}" alt="" width="30" height="24" class="d-inline-block align-top"> Feedback system
+            </p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard"> Admin Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin">Django Manager</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="showfeedbacks">Reviews | Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <h1 class="text-center display-4 my-5">Student Feedback Form</h1>
+            <form action="save_feedback" method="POST">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Select Your Branch</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" name="branch_name" required>
+                            <option selected>Select Your Branch</option>
+                            <option value="CS">CS</option>
+                            <option value="EC">EC</option>
+                            <option value="IT">IT</option>
+                            <option value="CE">CE</option>
+                            <option value="ME">ME</option>
+                            <option value="EN">EN</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Your Preview Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="your_name" name="your_name" placeholder="Enter Your Name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="your_email" name="your_email" placeholder="Enter your Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">What you feel about college?</label>
+                    <textarea class="form-control" id="abaout_your_college" name="abaout_your_college" rows="3" required></textarea>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Faculty Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="faculty_name" name="faculty_name" placeholder="Faculty Name" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Subject he/she teaches</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="subj_teacher" name="subj_teacher" placeholder="Subject he/she teaches" required>
+                    </div>
+                </div>
+
+                <hr>
+                <h3>Rating</h3>
+                <br>
+                <table class="table table-striped text-center bg-white">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Indicators</th>
+                            <th scope="col">Very poor</th>
+                            <th scope="col">Poor</th>
+                            <th scope="col">Average</th>
+                            <th scope="col">Good</th>
+                            <th scope="col">Excellent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form action="save_feedback" method="POST">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Teaching Skills</td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teaching_skill" id="teaching_skill" value="Very poor" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teaching_skill" id="teaching_skill" value="Poor">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teaching_skill" id="teaching_skill" value="Average">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teaching_skill" id="teaching_skill" value="Good">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teaching_skill" id="teaching_skill" value="Excellent">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Class Interaction</td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="class_intraction" id="class_intraction" value="Very poor" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="class_intraction" id="class_intraction" value="Poor">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="class_intraction" id="class_intraction" value="Average">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="class_intraction" id="class_intraction" value="Good">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="class_intraction" id="class_intraction" value="Excellent">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>After class interaction</td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="after_class_intraction" id="after_class_intraction" value="Very poor" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="after_class_intraction" id="after_class_intraction" value="Poor">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="after_class_intraction" id="after_class_intraction" value="Average">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="after_class_intraction" id="after_class_intraction" value="Good">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="after_class_intraction" id="after_class_intraction" value="Excellent">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Behaviour</td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="behaviour" id="behaviour" value="Very poor" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="behaviour" id="behaviour" value="Poor">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="behaviour" id="behaviour" value="Average">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="behaviour" id="behaviour" value="Good">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="behaviour" id="behaviour" value="Excellent">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Knowledge about the subject</td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="knowledge_about_subj" id="knowledge_about_subj" value="Very poor" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="knowledge_about_subj" id="knowledge_about_subj" value="Poor">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="knowledge_about_subj" id="knowledge_about_subj" value="Average">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="knowledge_about_subj" id="knowledge_about_subj" value="Good">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="knowledge_about_subj" id="knowledge_about_subj" value="Excellent">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>Doubt clearing</td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Doubt_clearing" id="Doubt_clearing" value="Very poor" required>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Doubt_clearing" id="Doubt_clearing" value="Poor">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Doubt_clearing" id="Doubt_clearing" value="Average">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Doubt_clearing" id="Doubt_clearing" value="Good">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="Doubt_clearing" id="Doubt_clearing" value="Excellent">
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Things you think he/she does extra/or need to focus?</label>
+                    <textarea class="form-control" id="suggestion" name="suggestion" rows="3" required></textarea>
+                </div>
+
+                <div class="text-center my-5">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="bg-dark">
+        <div class="center opacity-10 py-3" style="cursor: pointer !important;">
+            <p class="text-center text-white">© Copyright 2021 <strong>RRSMIT.</strong> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+
+</html>

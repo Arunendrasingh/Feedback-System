@@ -1,0 +1,141 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>RRSMIT Student Feedback System </title>
+    <style>
+        body {
+            background-image: url('{% static 'img/background1234.png' %}');
+        }
+        
+        @media screen and (min-width: 769px) {
+            #main-row {
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+        <div class="container-fluid">
+            <p class="navbar-brand">
+                <img src="{% static 'img/Picture1.png' %}" alt="" width="30" height="24" class="d-inline-block align-top"> Feedback system
+            </p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin">Django Manager</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="">
+        <div class="container-fluid">
+            <div id="main-row" class="row">
+                <div class="col-12 col-md-3 bg-dark">
+                    <div class=" bg-transparent">
+                        <div class="card-body">
+                            <img class="card-img-top px-5" src="http://rrsimt.ac.in/images/center.png" alt="">
+                            <h2 class="text-center text-white mt-4">RRSMIT</h2>
+                        </div>
+                    </div>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active my-2">
+                            <i class="fa fa-list-ol mr-2" aria-hidden="true"></i>Latest Reviews <span class="badge badge-danger">1</span>
+                        </a>
+                        <a href="/Comming_Soon" " class="list-group-item list-group-item-action my-2 "><i class="fa fa-users mr-2 " aria-hidden="true "></i>
+                Faculties</a>
+                        <a href="/Comming_Soon " class="list-group-item list-group-item-action my-2 "><i class="fa fa-clock-o mr-2 " aria-hidden="true "></i>
+                History</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-9 ">
+                    <div class="row mt-3 ">
+                        <div class="col-12 col-md-6 ">
+                            <div class="card bg-warning text-center ">
+                                <div class="card-body ">
+                                    <h1 class="card-title ">{{total_data}}</h1>
+                                    <h4 class="card-text ">Total reviews</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 ">
+                            <div class="card bg-success text-center ">
+                                <div class="card-body ">
+                                    <h1 class="card-title ">{{max_id.id}}</h1>
+                                    <h4 class="card-text ">Total visits</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 ">
+                            {% for feed in feedback_value %}
+                            <div class="list-group ">
+                                <a href="showfeedback?id={{feed.id}} " class=" card list-group-item list-group-item-action my-2 ">
+                                    <div class="card-body ">
+                                        <div class="row ">
+                                            <div class="col-md-2 col-lg-1 ">
+                                                <i class="fa fa-user-circle-o fa-3x text-primary " aria-hidden="true "></i>
+                                                <img src=" " alt=" ">
+                                            </div>
+                                            <div class="col-md-10 col-lg-11 ">
+                                                <div class="row ">
+                                                    <div class="col-md-8 ">
+                                                        <h4>{{ feed.your_name }}</h4>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <i class="fa fa-calendar mr-2 " aria-hidden="true "></i>02/12/2020
+                                                    </div>
+                                                </div>
+                                                <small>B.Tech, {{feed.your_branch}} Branch</small>
+                                                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci vel voluptate perferendis! Maiores sunt expedita at perspiciatis, sequi voluptatum sapiente?</p> -->
+                                                <p>{{feed.about_college}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark ">
+        <div class="center opacity-10 py-3 " style="cursor: pointer !important; ">
+            <p class="text-center text-white ">© Copyright 2021 <strong>RRSMIT.</strong> All Rights Reserved</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js " integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T " crossorigin="anonymous "></script>
+
+</body>
+
+</html>
